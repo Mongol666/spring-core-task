@@ -14,6 +14,7 @@
        default-autowire="byType">
 
     <context:annotation-config/>
+    <context:property-placeholder location="type.properties, product.properties"/>
 
     <bean id="pushkin" class="by.itacademy.gpisarev.spring.models.Author">
         <constructor-arg name="id" value="1"/>
@@ -29,17 +30,17 @@
         <property name="patronymic" value="Юрьевич"/>
     </bean>
 
-    <bean id="book" class="by.itacademy.gpisarev.spring.models.Type" c:id="1" c:name="Книга" autowire-candidate="true">
+    <bean id="book" class="by.itacademy.gpisarev.spring.models.Type" c:id="${book.id}" c:name="${book.name}" autowire-candidate="true">
         <qualifier type="by.itacademy.gpisarev.spring.qualifiers.string.TypeStringQualifier">
             <attribute key="name" value="book-qualifier"/>
         </qualifier>
     </bean>
-    <bean id="magazine" class="by.itacademy.gpisarev.spring.models.Type" p:id="2" p:name="Журнал" autowire-candidate="false">
+    <bean id="magazine" class="by.itacademy.gpisarev.spring.models.Type" p:id="#{book.id + 1}" p:name="${magazine.name}" autowire-candidate="false">
         <qualifier type="by.itacademy.gpisarev.spring.qualifiers.string.TypeStringQualifier">
             <attribute key="name" value="magazine-qualifier"/>
         </qualifier>
     </bean>
-    <bean id="diary" class="by.itacademy.gpisarev.spring.models.Type" c:id="3" p:name="Дневник" autowire-candidate="false">
+    <bean id="diary" class="by.itacademy.gpisarev.spring.models.Type" c:id="#{magazine.id + 1}" p:name="${diary.name}" autowire-candidate="false">
         <qualifier type="by.itacademy.gpisarev.spring.qualifiers.string.TypeStringQualifier">
             <attribute key="name" value="diary-qualifier"/>
         </qualifier>
@@ -51,8 +52,8 @@
     </util:map>
 
     <bean id="firstPushkinAndLermontovBook" class="by.itacademy.gpisarev.spring.models.PrintedProduct"
-          c:id="1"
-          c:name="Первая книга Пушкина и Лермонтова"
+          c:id="${first.id}"
+          c:name="${first.name}"
           init-method="init" destroy-method="destroy">
         <property name="authors" ref="firstBookAuthors"/>
     </bean>
