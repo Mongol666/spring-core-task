@@ -3,10 +3,10 @@ package by.itacademy.gpisarev.spring.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -17,6 +17,8 @@ public class PrintedProduct implements Printable {
 
     private Map<Integer, Author> authors;
 
+    @Autowired
+    @Qualifier(value = "book-qualifier")
     private Type type;
 
     public PrintedProduct(int id, String name) {
