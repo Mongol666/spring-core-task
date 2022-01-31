@@ -10,7 +10,8 @@
                            http://www.springframework.org/schema/util
                            http://www.springframework.org/schema/util/spring-util.xsd
                            http://www.springframework.org/schema/context
-                           http://www.springframework.org/schema/context/spring-context.xsd">
+                           http://www.springframework.org/schema/context/spring-context.xsd"
+       default-autowire="byType">
 
     <bean id="pushkin" class="by.itacademy.gpisarev.spring.models.Author">
         <constructor-arg name="id" value="1"/>
@@ -26,9 +27,9 @@
         <property name="patronymic" value="Юрьевич"/>
     </bean>
 
-    <bean id="book" class="by.itacademy.gpisarev.spring.models.Type" c:id="1" c:name="Книга"/>
-    <bean id="magazine" class="by.itacademy.gpisarev.spring.models.Type" p:id="2" p:name="Журнал"/>
-    <bean id="diary" class="by.itacademy.gpisarev.spring.models.Type" c:id="3" p:name="Дневник"/>
+    <bean id="book" class="by.itacademy.gpisarev.spring.models.Type" c:id="1" c:name="Книга" autowire-candidate="true"/>
+    <bean id="magazine" class="by.itacademy.gpisarev.spring.models.Type" p:id="2" p:name="Журнал" autowire-candidate="false"/>
+    <bean id="diary" class="by.itacademy.gpisarev.spring.models.Type" c:id="3" p:name="Дневник" autowire-candidate="false"/>
 
     <util:map id="firstBookAuthors">
         <entry key="#{pushkin.id}" value="#{pushkin}"/>
@@ -38,8 +39,7 @@
     <bean id="firstPushkinAndLermontovBook" class="by.itacademy.gpisarev.spring.models.PrintedProduct"
           c:id="1"
           c:name="Первая книга Пушкина и Лермонтова"
-          init-method="init" destroy-method="destroy"
-          autowire="byName">
+          init-method="init" destroy-method="destroy">
           <!--c:type-ref="book">-->
         <property name="authors" ref="firstBookAuthors"/>
     </bean>

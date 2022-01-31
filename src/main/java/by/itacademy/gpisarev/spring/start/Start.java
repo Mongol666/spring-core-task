@@ -24,5 +24,7 @@ public class Start {
 
         PrintedProduct firstPushkinBook = context.getBean("firstPushkinAndLermontovBook", PrintedProduct.class);
         firstPushkinBook.print();
+
+        context.registerShutdownHook();
     }
 }
