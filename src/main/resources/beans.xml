@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util
+                           http://www.springframework.org/schema/util/spring-util.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd"
+       default-autowire="byType">
+
+    <context:annotation-config/>
+    <context:property-placeholder location="type.properties, product.properties"/>
+
+    <bean id="pushkin" class="by.itacademy.gpisarev.spring.models.Author">
+        <constructor-arg name="id" value="#{new java.util.Random().nextInt(100)}"/>
+        <constructor-arg name="firstName" value="Александр"/>
+        <constructor-arg index="2" value="Пушкин"/>
+        <constructor-arg index="3" value="Сергеевич"/>
+    </bean>
+
+    <bean id="lermontov" class="by.itacademy.gpisarev.spring.models.Author">
+        <property name="id" value="#{T(Math).round(T(Math).log(237.3))}"/>
+        <property name="firstName" value="Михаил"/>
+        <property name="lastName" value="Лермонтов"/>
+        <property name="patronymic" value="Юрьевич"/>
+    </bean>
+
+    <bean id="book" class="by.itacademy.gpisarev.spring.models.Type" c:id="${book.id}" c:name="${book.name}" autowire-candidate="true">
+        <qualifier type="by.itacademy.gpisarev.spring.qualifiers.string.TypeStringQualifier">
+            <attribute key="name" value="book-qualifier"/>
+        </qualifier>
+    </bean>
+    <bean id="magazine" class="by.itacademy.gpisarev.spring.models.Type" p:id="#{book.id + 1}" p:name="${magazine.name}" autowire-candidate="false">
+        <qualifier type="by.itacademy.gpisarev.spring.qualifiers.string.TypeStringQualifier">
+            <attribute key="name" value="magazine-qualifier"/>
+        </qualifier>
+    </bean>
+    <bean id="diary" class="by.itacademy.gpisarev.spring.models.Type" c:id="#{magazine.id + 1}" p:name="${diary.name}" autowire-candidate="false">
+        <qualifier type="by.itacademy.gpisarev.spring.qualifiers.string.TypeStringQualifier">
+            <attribute key="name" value="diary-qualifier"/>
+        </qualifier>
+    </bean>
+
+    <util:map id="firstBookAuthors">
+        <entry key="#{pushkin.id}" value="#{pushkin}"/>
+        <entry key="#{lermontov.id}" value="#{lermontov}"/>
+    </util:map>
+
+    <bean id="firstPushkinAndLermontovBook" class="by.itacademy.gpisarev.spring.models.PrintedProduct"
+          c:id="${first.id}"
+          c:name="${first.name}"
+          init-method="init" destroy-method="destroy">
+        <property name="authors" ref="firstBookAuthors"/>
+    </bean>
+
+</beans>
