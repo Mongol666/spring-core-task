@@ -17,14 +17,14 @@
     <context:property-placeholder location="type.properties, product.properties"/>
 
     <bean id="pushkin" class="by.itacademy.gpisarev.spring.models.Author">
-        <constructor-arg name="id" value="1"/>
+        <constructor-arg name="id" value="#{new java.util.Random().nextInt(100)}"/>
         <constructor-arg name="firstName" value="Александр"/>
         <constructor-arg index="2" value="Пушкин"/>
         <constructor-arg index="3" value="Сергеевич"/>
     </bean>
 
     <bean id="lermontov" class="by.itacademy.gpisarev.spring.models.Author">
-        <property name="id" value="2"/>
+        <property name="id" value="#{T(Math).round(T(Math).log(237.3))}"/>
         <property name="firstName" value="Михаил"/>
         <property name="lastName" value="Лермонтов"/>
         <property name="patronymic" value="Юрьевич"/>
