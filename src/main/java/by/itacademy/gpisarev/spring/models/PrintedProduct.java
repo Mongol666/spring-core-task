@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -13,7 +14,7 @@ public class PrintedProduct implements Printable {
     private int id;
     private String name;
 
-    private List<Author> authors;
+    private Set<Author> authors;
 
     private Type type;
 

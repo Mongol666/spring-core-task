@@ -26,9 +26,9 @@
     <bean id="firstPushkinBook" class="by.itacademy.gpisarev.spring.models.PrintedProduct"
         c:id="1" c:name="Первая книга Пушкина" c:type-ref="book">
         <property name="authors">
-            <list>
+            <set>
                 <ref bean="pushkin"/>
-            </list>
+            </set>
         </property>
     </bean>
 
