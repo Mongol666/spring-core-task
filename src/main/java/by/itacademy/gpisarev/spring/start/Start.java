@@ -1,6 +1,7 @@
 package by.itacademy.gpisarev.spring.start;
 
 import by.itacademy.gpisarev.spring.models.Author;
+import by.itacademy.gpisarev.spring.models.PrintedProduct;
 import by.itacademy.gpisarev.spring.models.Type;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,11 +15,14 @@ public class Start {
         //Author lermontov = context.getBean("lermontov", Author.class);
         //System.out.println(lermontov);
 
-        Type book = context.getBean("book", Type.class);
-        System.out.println(book);
-        Type magazine = context.getBean("magazine", Type.class);
-        System.out.println(magazine);
-        Type diary = context.getBean("diary", Type.class);
-        System.out.println(diary);
+        //Type book = context.getBean("book", Type.class);
+        //book.print()
+        //Type magazine = context.getBean("magazine", Type.class);
+        //magazine.print()
+        //Type diary = context.getBean("diary", Type.class);
+        //diary.print()
+
+        PrintedProduct firstPushkinBook = context.getBean("firstPushkinBook", PrintedProduct.class);
+        firstPushkinBook.print();
     }
 }

@@ -23,4 +23,13 @@
     <bean id="magazine" class="by.itacademy.gpisarev.spring.models.Type" p:id="2" p:name="Журнал"/>
     <bean id="diary" class="by.itacademy.gpisarev.spring.models.Type" c:id="3" p:name="Дневник"/>
 
+    <bean id="firstPushkinBook" class="by.itacademy.gpisarev.spring.models.PrintedProduct"
+        c:id="1" c:name="Первая книга Пушкина" c:type-ref="book">
+        <property name="authors">
+            <list>
+                <ref bean="pushkin"/>
+            </list>
+        </property>
+    </bean>
+
 </beans>
