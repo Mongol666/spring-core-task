@@ -17,17 +17,17 @@ public class PrintedProduct implements Printable {
 
     private Map<Integer, Author> authors;
 
-    private Type type;
+    private Type book;
 
     public PrintedProduct(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public PrintedProduct(int id, String name, Type type) {
+    public PrintedProduct(int id, String name, Type book) {
         this.id = id;
         this.name = name;
-        this.type = type;
+        this.book = book;
     }
 
     public void init() {
