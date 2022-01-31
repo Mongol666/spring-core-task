@@ -22,7 +22,7 @@ public class Start {
         //Type diary = context.getBean("diary", Type.class);
         //diary.print()
 
-        PrintedProduct firstPushkinBook = context.getBean("firstPushkinBook", PrintedProduct.class);
+        PrintedProduct firstPushkinBook = context.getBean("firstPushkinAndLermontovBook", PrintedProduct.class);
         firstPushkinBook.print();
     }
 }
