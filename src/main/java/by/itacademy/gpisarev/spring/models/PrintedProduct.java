@@ -30,6 +30,7 @@ public class PrintedProduct implements Printable {
     private String name;
 
     @Autowired
+    @Qualifier(value = "pushkinQualifier")
     private Author author;
 
     //@Autowired
