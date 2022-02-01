@@ -1,14 +1,12 @@
 package by.itacademy.gpisarev.spring.start;
 
-import by.itacademy.gpisarev.spring.models.Author;
 import by.itacademy.gpisarev.spring.models.PrintedProduct;
-import by.itacademy.gpisarev.spring.models.Type;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Start {
     public static void main(String[] args) {
-        ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
+        ConfigurableApplicationContext context = new AnnotationConfigApplicationContext("by.itacademy.gpisarev.spring");
 
         //Author pushkin = context.getBean("pushkin", Author.class);
         //System.out.println(pushkin);
@@ -22,7 +20,7 @@ public class Start {
         //Type diary = context.getBean("diary", Type.class);
         //diary.print()
 
-        PrintedProduct firstPushkinBook = context.getBean("firstPushkinAndLermontovBook", PrintedProduct.class);
+        PrintedProduct firstPushkinBook = context.getBean("firstBook", PrintedProduct.class);
         firstPushkinBook.print();
 
         context.registerShutdownHook();
