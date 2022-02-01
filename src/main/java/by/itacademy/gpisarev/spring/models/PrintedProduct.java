@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -22,23 +23,24 @@ import java.util.Map;
 @Component
 @PropertySource(value = {"classpath:product.properties"})
 public class PrintedProduct implements Printable {
-    @Value("${product.id}")
+    //@Value("${product.id}")
     private int id;
 
-    @Value("${product.name}")
+    //@Value("${product.name}")
     private String name;
 
+    @Autowired
     private Author author;
 
-    @Autowired
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private Map<String, Author> authors;
+    //@Autowired
+    //@ToString.Exclude
+    //@EqualsAndHashCode.Exclude
+    //private Map<String, Author> authors;
 
-    @Value("${product.author}")
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
-    private String authorName;
+    //@Value("${product.author}")
+    //@ToString.Exclude
+    //@EqualsAndHashCode.Exclude
+    //private String authorName;
 
     @Autowired
     @TypeStringQualifier(name = "book-qualifier")
@@ -57,7 +59,7 @@ public class PrintedProduct implements Printable {
 
     @PostConstruct
     public void init() {
-        author = authors.get(authorName);
+        //author = authors.get(authorName);
         System.out.println("Печатный продукт '" + name + "' создан");
     }
 

@@ -20,8 +20,11 @@ public class Start {
         //Type diary = context.getBean("diary", Type.class);
         //diary.print()
 
-        PrintedProduct firstPushkinBook = context.getBean("firstBook", PrintedProduct.class);
-        firstPushkinBook.print();
+        //PrintedProduct firstPushkinBook = context.getBean("firstBook", PrintedProduct.class);
+        //firstPushkinBook.print();
+
+        PrintedProduct secondLermontovBook = context.getBean("secondLermontovBook", PrintedProduct.class);
+        secondLermontovBook.print();
 
         context.registerShutdownHook();
     }
